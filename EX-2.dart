@@ -42,14 +42,14 @@ class Bank {
 
   Bank({required this.name});
 
-  BankAccount createAccount(int accountId, String accountName) {
+  BankAccount createAccount(String accountId, String accountName) {
     for (var account in _accounts) {
-      if (account.id == accountId.toString()) {
+      if (account.id == accountId) {
         throw Exception('Account with ID $accountId already exists!');
       }
     }
 
-    var newAccount = BankAccount(accountId.toString(), accountName, 0.0);
+    var newAccount = BankAccount(accountId, accountName, 0.0);
     _accounts.add(newAccount);
     print('Account created: ID=${newAccount.id}, Name=${newAccount.name}');
     return newAccount;
@@ -60,7 +60,7 @@ class Bank {
 
 void main() {
   Bank myBank = Bank(name: "CADT Bank");
-  BankAccount ronanAccount = myBank.createAccount(100, 'Ronan');
+  BankAccount ronanAccount = myBank.createAccount('a0011', 'Ronan');
 
   print(ronanAccount.balance); // Balance: $0
   ronanAccount.credit(100);
@@ -75,7 +75,7 @@ void main() {
   }
 
   try {
-    myBank.createAccount(100, 'Honlgy'); // This will throw an exception
+    myBank.createAccount('011', 'Honlgy'); // This will throw an exception
   } catch (e) {
     print(e); // Output: Account with ID 100 already exists!
   }

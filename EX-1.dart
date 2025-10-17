@@ -1,11 +1,19 @@
 enum Skill { FLUTTER, DART, OTHER }
 
 class Address {
-  String street;
-  String city;
-  String zipCode;
+  String _street;
+  String _city;
+  String _zipCode;
 
-  Address(this.street, this.city, this.zipCode);
+  // Address(this.street, this.city, this.zipCode);
+  Address(String street, String city, String zipCode)
+    : _street = street,
+      _city = city,
+      _zipCode = zipCode;
+
+  String get street => _street;
+  String get city => _city;
+  String get zipCode => _zipCode;
 }
 
 class Employee {
@@ -64,7 +72,7 @@ class Employee {
       'Skill: ${skill.name}\n'
       'Address: ${address.street}, ${address.city}, ${address.zipCode}\n'
       'Years of Experience: $yearOfExperience\n'
-      'Total Salary: \$${computeSalary()}\n', 
+      'Total Salary: \$${computeSalary()}\n',
     );
   }
 
@@ -84,7 +92,6 @@ class Employee {
     double experienceBonus = _yearOfExperience * 2000;
     return _baseSalary + experienceBonus + skillBonus;
   }
-
 }
 
 void main() {
