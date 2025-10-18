@@ -1,6 +1,6 @@
 class BankAccount {
   // TODO
-  String id;
+  int id;
   String name;
   double _balance;
 
@@ -31,7 +31,8 @@ class BankAccount {
       print('Credit amount must be positive.');
       return _balance;
     }
-    return _balance + creditAmount;
+    _balance += creditAmount; 
+    return _balance;
   }
 }
 
@@ -42,7 +43,7 @@ class Bank {
 
   Bank({required this.name});
 
-  BankAccount createAccount(String accountId, String accountName) {
+  BankAccount createAccount(int accountId, String accountName) {
     for (var account in _accounts) {
       if (account.id == accountId) {
         throw Exception('Account with ID $accountId already exists!');
@@ -60,7 +61,7 @@ class Bank {
 
 void main() {
   Bank myBank = Bank(name: "CADT Bank");
-  BankAccount ronanAccount = myBank.createAccount('a0011', 'Ronan');
+  BankAccount ronanAccount = myBank.createAccount(1, 'Ronan');
 
   print(ronanAccount.balance); // Balance: $0
   ronanAccount.credit(100);
@@ -75,7 +76,7 @@ void main() {
   }
 
   try {
-    myBank.createAccount('011', 'Honlgy'); // This will throw an exception
+    myBank.createAccount(1, 'Honlgy'); // This will throw an exception
   } catch (e) {
     print(e); // Output: Account with ID 100 already exists!
   }
